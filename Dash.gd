@@ -11,8 +11,9 @@ func _process(delta):
 	pass
 
 func start_dash(duration):
-	duration_timer.wait_time = duration
-	duration_timer.start()
+	if !self.is_dashing():
+		duration_timer.wait_time = duration
+		duration_timer.start()
 
 func is_dashing():
 	return !duration_timer.is_stopped()
