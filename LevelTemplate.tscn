@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dckle2mvf0sr4"]
+[gd_scene load_steps=7 format=3 uid="uid://dckle2mvf0sr4"]
 
 [ext_resource type="Texture2D" uid="uid://b8e6c18vuuti6" path="res://industrial.v2.png" id="1_xgbcu"]
 [ext_resource type="PackedScene" uid="uid://dcq5grjfns4ha" path="res://Player.tscn" id="2_dopqj"]
 [ext_resource type="PackedScene" uid="uid://y2ijxwob8fnv" path="res://Drop.tscn" id="3_a038y"]
+[ext_resource type="PackedScene" uid="uid://h1sbntw7i504" path="res://Camera_2d.tscn" id="4_3f371"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6pinp"]
 texture = ExtResource("1_xgbcu")
@@ -1240,6 +1241,7 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_6pinp")
 
 [node name="LevelTemplate" type="Node2D"]
+metadata/_edit_group_ = true
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(0, -3)
@@ -1251,4 +1253,7 @@ layer_0/tile_data = PackedInt32Array(44, 786433, 0, 65580, 786433, 0, 131116, 78
 position = Vector2(306, 1176)
 
 [node name="Drop" parent="." instance=ExtResource("3_a038y")]
-position = Vector2(447, 1107)
+position = Vector2(444, 983)
+
+[node name="Camera2D" parent="." instance=ExtResource("4_3f371")]
+anchor_mode = 0

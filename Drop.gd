@@ -19,11 +19,13 @@ func _on_body_entered(body):
 		explode()
 	if body.name == "Player":
 		if speed != 0:
+			Global.camera.shake(.2, 5)
 			queue_free()
 		else:
 			explode()
 
 func explode():
+	Global.camera.shake(.2, 5)
 	var _particle = explosionParticle.instantiate()
 	_particle.position = global_position
 	_particle.rotation = global_rotation
