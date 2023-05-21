@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = -600.0
 const DASH_SPEED = 800
 const DASH_DURATION = .2
 
@@ -29,18 +29,21 @@ func _physics_process(delta):
 	if is_on_floor() and dashed_from_jump:
 		dashed_from_jump = false
 
-	if Input.is_action_just_pressed("dash"):
-		if not dashed_from_jump:
-			dash.start_dash(DASH_DURATION)
-		if not is_on_floor():
-			dashed_from_jump = true
 		
 		
-	var speed = DASH_SPEED if dash.is_dashing() else SPEED
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+
+	if Input.is_action_just_pressed("dash"):
+		if not dashed_from_jump:
+			dash.start_dash(DASH_DURATION)
+			velocity.y = 0
+		if not is_on_floor():
+			dashed_from_jump = true
+
+	var speed = DASH_SPEED if dash.is_dashing() else SPEED
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.

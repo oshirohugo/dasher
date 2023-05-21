@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://cp21ro00u0cw"]
+
+[sub_resource type="Curve" id="Curve_dbtok"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jidky"]
+curve = SubResource("Curve_dbtok")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m07r7"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 90.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 150.0
+initial_velocity_max = 150.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 20.0
+scale_max = 20.0
+scale_curve = SubResource("CurveTexture_jidky")
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+emitting = false
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_m07r7")
+one_shot = true
+explosiveness = 1.0
+collision_base_size = 0.0
