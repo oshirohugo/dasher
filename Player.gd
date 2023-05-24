@@ -10,38 +10,20 @@ const DASH_DURATION = .2
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var dash = $Dash
-var dashed_from_jump : bool = false
 
 func _physics_process(delta):
 	# Add the gravity.
-	if not is_on_floor() and not dash.is_dashing():
-		velocity.y += gravity * delta
-		if(velocity.y <= 0):
-			animated_sprite.animation = "jump"
-		else:
-			animated_sprite.animation = "fall"
+	if not is_on_floor():
+		velocity.y += gravity * delta		
+		animated_sprite.animation = "fall"
 	else:
 		if(velocity.x == 0):
 			animated_sprite.animation = "idle"
 		else:
 			animated_sprite.animation = "walk"
-	
-	if is_on_floor() and dashed_from_jump:
-		dashed_from_jump = false
-
-		
-		
-
-	# Handle Jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
 
 	if Input.is_action_just_pressed("dash"):
-		if not dashed_from_jump:
-			dash.start_dash(DASH_DURATION)
-			velocity.y = 0
-		if not is_on_floor():
-			dashed_from_jump = true
+		dash.start_dash(DASH_DURATION)
 
 	var speed = DASH_SPEED if dash.is_dashing() else SPEED
 
@@ -69,3 +51,4 @@ func get_direction(is_dashing: bool) -> float:
 	if is_dashing:
 		return 1 if animated_sprite.flip_h == false else -1
 	return 0
+
